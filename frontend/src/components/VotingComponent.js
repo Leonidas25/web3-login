@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 import VotingAbi from "../contracts/Voting.json";
 
-const CONTRACT_ADDRESS = '0x610178dA211FEF7D417bC0e6FeD39F05609AD788';
+const CONTRACT_ADDRESS = '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0';
 const CANDIDATE_NAMES = ['Alice', 'Bob', 'Charlie'];
 
 export function VotingComponent() {

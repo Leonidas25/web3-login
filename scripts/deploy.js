@@ -39,10 +39,10 @@ async function main() {
   console.log("Voting address:", voting.address);
 
   // We also save the contract's artifacts and address in the frontend directory
-  saveFrontendFiles(token);
+  saveFrontendFiles(token, myNFT, voting);
 }
 
-function saveFrontendFiles(token) {
+function saveFrontendFiles(token, mynft, voting) {
   const fs = require("fs");
   const contractsDir = path.join(__dirname, "..", "frontend", "src", "contracts");
 
@@ -52,14 +52,26 @@ function saveFrontendFiles(token) {
 
   fs.writeFileSync(
     path.join(contractsDir, "contract-address.json"),
-    JSON.stringify({ Token: token.address }, undefined, 2)
+    JSON.stringify({ Token: token.address, MyNFT: mynft.address, Voting: voting.address }, undefined, 2)
   );
 
   const TokenArtifact = artifacts.readArtifactSync("Token");
+  const MyNFTArtifact = artifacts.readArtifactSync("MyNFT");
+  const VotingArtifact = artifacts.readArtifactSync("Voting");
 
   fs.writeFileSync(
     path.join(contractsDir, "Token.json"),
     JSON.stringify(TokenArtifact, null, 2)
+  );
+
+  fs.writeFileSync(
+    path.join(contractsDir, "MyNFT.json"),
+    JSON.stringify(MyNFTArtifact, null, 2)
+  );
+
+  fs.writeFileSync(
+    path.join(contractsDir, "Voting.json"),
+    JSON.stringify(VotingArtifact, null, 2)
   );
 }
 
